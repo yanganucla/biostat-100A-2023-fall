@@ -1,0 +1,249 @@
+
+library(haven)
+library(ggplot2)
+  setwd(("~/Desktop/100A") 
+  df=read.csv("bs100_final_data.csv")
+  View(df)
+ #Construct a plot of the distribution of health outcome and describe it
+  ggplot(df, aes(x=phq9))+
+    geom_boxplot() + 
+    theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+          axis.title.y=element_text(face="italic", colour="blue", size=14),
+          title=element_text(face="italic", colour="red", size=14)) +
+    xlab("phq9") +
+    ylab("frequency") +
+    labs(title="phq9")
+  #Construct a bivariate plot comparing health literacy to your health outcome 
+  
+  ggplot(df, aes(x=health_lit,y=phq9))+
+    geom_point(color = "black") +
+    theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+          axis.title.y=element_text(face="italic", colour="blue", size=14),
+          title=element_text(face="italic", colour="red", size=14)) +
+    xlab("health_lit") +
+    ylab("phq9") +
+    labs(title="Bivariate:health_lit & phq9")
+  
+#Create a binary variable of high health literacy
+df$high_health_literacy <- ifelse(df$health_lit >= 45, 1, 0)
+#plot the variable
+#health_lit
+ggplot(df, aes(x=health_lit))+
+  geom_boxplot() + 
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("health_lit") +
+  ylab("count") +
+  labs(title="health_lit")
+
+ggplot(df, aes(x=health_lit,y=phq9))+
+  geom_point(color = "black") +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("health_lit") +
+  ylab("phq9") +
+  labs(title="Bivariate:health_lit & phq9")
+
+#sex两列的图就说右边的数据多就好       
+ggplot(df, aes(x=sex, fill=factor(sex))) +
+  geom_bar() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("gender") +
+  ylab("count") +
+  labs(title="sex")
+  
+
+
+ggplot(df, aes(x=phq9, fill=factor(sex))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("phq9") +
+  ylab("count") +
+  labs(title="Bivariate Plot: sex VS. PHQ9")
+
+
+#pol        
+ggplot(df, aes(x=pol, fill=factor(pol))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("pol") +
+  ylab("count") +
+  labs(title="pol")
+
+
+ggplot(df, aes(x=phq9, fill=factor(pol))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("phq9") +
+  ylab("count") +
+  labs(title="Bivariate Plot: pol VS. PHQ9")
+
+
+#daily_fol
+  ggplot(df, aes(x=daily_fol))+
+           geom_boxplot() + 
+           theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+                 axis.title.y=element_text(face="italic", colour="blue", size=14),
+                 title=element_text(face="italic", colour="red", size=14)) +
+           xlab("daily_fol") +
+           ylab("count") +
+           labs(title="daily_fol")
+         
+  ggplot(df, aes(x=daily_fol,y=phq9))+
+           geom_point(color = "black") +
+           theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+                 axis.title.y=element_text(face="italic", colour="blue", size=14),
+                 title=element_text(face="italic", colour="red", size=14)) +
+           xlab("daily_fol") +
+           ylab("phq9") +
+           labs(title="daily_fol")
+
+
+
+
+#ins        
+ggplot(df, aes(x=ins, fill=factor(ins))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("insurance state") +
+  ylab("count") +
+  labs(title="ins")
+
+
+ggplot(df, aes(x=phq9, fill=factor(ins))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("phq9") +
+  ylab("insurance state") +
+  labs(title="Bivariate Plot: insurance state VS. PHQ9")
+
+#educ
+ggplot(df, aes(x=educ, fill=factor(educ))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("eduction") +
+  ylab("count") +
+  labs(title="education")
+
+ggplot(df, aes(x=phq9, fill=factor(educ))) +
+  geom_histogram() +
+  theme(axis.title.x=element_text(face="italic", colour="blue", size=14),
+        axis.title.y=element_text(face="italic", colour="blue", size=14),
+        title=element_text(face="italic", colour="red", size=14)) +
+  xlab("phq9") +
+  ylab("education") +
+  labs(title="Bivariate Plot: education VS. PHQ9")
+
+#IIIresult table1
+
+
+
+#code
+high_lit <- df[df$high_health_literacy == 1, ]
+low_lit <- df[df$high_health_literacy == 0, ]
+
+# sex
+sex_tb <- table(df$sex)
+prop.table(sex_tb)
+
+sex_tb <- table(high_lit$sex)
+prop.table(sex_tb)
+
+sex_tb <- table(low_lit$sex)
+prop.table(sex_tb)
+
+chisq.test(table(df$sex, df$high_health_literacy), correct = FALSE)
+
+# pol
+pol_tb <- table(df$pol)
+prop.table(pol_tb)
+
+pol_tb <- table(high_lit$pol)
+prop.table(pol_tb)
+
+pol_tb <- table(low_lit$pol)
+prop.table(pol_tb)
+
+chisq.test(table(df$pol, df$high_health_literacy), correct = FALSE)
+
+
+# Daily Folate
+mean(df$daily_fol)
+sd(df$daily_fol)
+mean(high_lit$daily_fol)
+sd(high_lit$daily_fol)
+mean(low_lit$daily_fol)
+sd(low_lit$daily_fol)
+
+ftest <- var.test(daily_fol ~ high_health_literacy, data=df)
+ftest
+ttest <- t.test(daily_fol ~ high_health_lit, data=final_data, var.equal=FALSE, alternative = "two.sided")
+ttest
+
+# ins
+ins_tb <- table(df$ins)
+prop.table(ins_tb)
+
+ins_tb <- table(high_lit$ins)
+prop.table(ins_tb)
+
+ins_tb <- table(low_lit$ins)
+prop.table(ins_tb)
+chisq.test(table(df$ins, df$high_health_lit), correct = FALSE)
+
+# educ
+educ_tb <- table(df$educ)
+prop.table(educ_tb)
+
+educ_tb <- table(high_lit$educ)
+prop.table(educ_tb)
+
+educ_tb <- table(low_lit$educ)
+prop.table(educ_tb)
+
+chisq.test(table(df$educ, df$high_health_lit), correct = FALSE)
+
+# phq9
+mean(df$phq9)
+sd(df$phq9)
+mean(high_lit$phq9)
+sd(high_lit$phq9)
+mean(low_lit$phq9)
+sd(low_lit$phq9)
+
+ftest <- var.test(phq9 ~ high_health_literacy, data=df)
+ftest
+ttest <- t.test(phq9 ~ high_health_literacy, data=df, var.equal=FALSE)
+ttest
+
+
+#table2
+reg_phq9 <- lm(phq9 ~ health_lit, data=df) 
+
+# View the model output
+print(reg_phq9)
+# More details (p-value, f-stat, etc) here 
+summary(reg_phq9)
+# Get the r^2 b
+summary(reg_phq9)$r.squared 
+
+
+
+
+  
